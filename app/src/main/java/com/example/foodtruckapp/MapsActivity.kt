@@ -2,6 +2,7 @@ package com.example.foodtruckapp
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -23,6 +24,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var lastLocation: Location
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -54,13 +56,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // Add a marker in Austin and move the camera
-        val myPlace = LatLng(30.2672, -97.7431)
-        map.addMarker(MarkerOptions().position(myPlace).title("Home"))
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(myPlace, 12.0f))
-
         map.getUiSettings().setZoomControlsEnabled(true)
         map.setOnMarkerClickListener(this)
+
+        val myPlace = LatLng(30.2672, -97.7431)
+        map.addMarker(MarkerOptions().position(myPlace).title("Austin"))
+        map.moveCamera(CameraUpdateFactory.newLatLng(myPlace))
+
 
         setUpMap()
     }
@@ -76,5 +78,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
             return
         }
+
+        map.isMyLocationEnabled = true
+
+        fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+
+            if (location != null) {
+                lastLocation = location
+                val currentLatLng = LatLng(location.latitude, location.longitude)
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
+            }
+        }
+    }
+
+    private fun getLocationsFromDatabase(){
+        //TODO: add location markers from database
     }
 }
