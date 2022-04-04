@@ -17,7 +17,7 @@ class LocationActivity : AppCompatActivity() {
     //Uncomment this function and change AndroidManifest and "LocationActivity" -> to the activity it should
     //  navigate to, to make Locate Me Button functional.
 
-    //fun sendData(view: View) {
+    //fun sendData2(view: View) {
     //    val intent = Intent(this, LocationActivity::class.java)
     //    startActivity(intent)
     //}
