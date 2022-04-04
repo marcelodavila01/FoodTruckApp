@@ -71,7 +71,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectLocation_text"
-        android:onClick="sendData2"/>
+        android:onClick="openMap"/>
 
     <Button
         android:id="@+id/setLocation_button"
