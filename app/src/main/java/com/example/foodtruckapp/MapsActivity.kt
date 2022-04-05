@@ -82,11 +82,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         map.setOnMarkerClickListener(this)
 
         val myPlace = LatLng(30.2672, -97.7431)
-        map.addMarker(MarkerOptions().position(myPlace).title("Austin"))
         map.moveCamera(CameraUpdateFactory.newLatLng(myPlace))
 
-
         setUpMap()
+        getLocationsFromDatabase()
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
@@ -108,12 +107,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
             }
         }
     }
 
     private fun getLocationsFromDatabase(){
         //TODO: add location markers from database
+
+        val dictionary = mapOf(
+            "pinch" to mapOf("lat" to 30.283068838451634, "long" to -97.74089692091488),
+            "pepe's tacos" to mapOf("lat" to 30.2739933630959, "long" to -97.7508396343992),
+            "chef hong" to mapOf("lat" to 30.288789703098274, "long" to -97.74574635372068),
+        )
+        dictionary.forEach{ (key, value) ->
+            val place = LatLng(value["lat"]!!, value["long"]!!)
+            map.addMarker(MarkerOptions().position(place).title(key))
+        }
     }
 }
