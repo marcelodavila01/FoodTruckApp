@@ -3,6 +3,7 @@ package com.example.foodtruckapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class LocationActivity : AppCompatActivity() {
@@ -20,5 +21,11 @@ class LocationActivity : AppCompatActivity() {
     fun openMap(view: View) {
         val intent = Intent(this, MapsActivity::class.java)
         startActivity(intent)
+    }
+
+    fun openList(view: View)
+    {
+        val myToast = Toast.makeText(this, "coming soon", Toast.LENGTH_LONG)
+        myToast.show()
     }
 }
