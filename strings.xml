@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">FoodtruckApp</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="raahim_commit">this is raahim\'s first commit!</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="home_choice">I am a...</string>
+
+    <!-- Strings used for recyclerview-->
+    <string name="image1">no_image_template</string>
+    <string name="image2">no_image_template</string>
+    <string name="image3">no_image_template</string>
+    <string name="image4">no_image_template</string>
+    <string name="image5">no_image_template</string>
+    <string name="image6">no_image_template</string>
+    <string name="image7">no_image_template</string>
+    <string name="image8">no_image_template</string>
+    <string name="image9">no_image_template</string>
+    <string name="image10">no_image_template</string>
+
+</resources>
