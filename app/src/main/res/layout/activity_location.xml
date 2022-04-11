@@ -43,7 +43,7 @@
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Discover amazing food truck food nearby by setting up your location."
+        android:text="Discover amazing food truck food nearby."
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -55,18 +55,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="SELECT LOCATION"
+        android:text="SELECT VIEW"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/discover_text" />
 
     <Button
-        android:id="@+id/locateMe_button"
+        android:id="@+id/Map_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Locate Me"
+        android:text="Map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,14 +74,15 @@
         android:onClick="openMap"/>
 
     <Button
-        android:id="@+id/setLocation_button"
+        android:id="@+id/List_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Provide My Location"
+        android:text="List"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locateMe_button"
+        app:layout_constraintTop_toBottomOf="@+id/Map_button"
         android:onClick="openList"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
