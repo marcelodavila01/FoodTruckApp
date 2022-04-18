@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.foodtruckapp.database.AppDatabase
+import com.example.foodtruckapp.database.FoodTruck
 import com.example.foodtruckapp.databinding.ActivityMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -21,7 +22,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -79,8 +80,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        map.getUiSettings().setZoomControlsEnabled(true)
+        map.uiSettings.isZoomControlsEnabled = true
         map.setOnMarkerClickListener(this)
+        map.setOnInfoWindowClickListener(this)
 
         val myPlace = LatLng(30.2672, -97.7431)
         map.moveCamera(CameraUpdateFactory.newLatLng(myPlace))
@@ -91,6 +93,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     override fun onMarkerClick(p0: Marker): Boolean {
         return false
+    }
+
+    override fun onInfoWindowClick(marker: Marker?) {
+        val intent = Intent(this, FoodTruckDetailActivity::class.java)
+
+        val foodTruck = marker?.tag as FoodTruck
+        intent.putExtra("name", foodTruck.name)
+        intent.putExtra("hours", foodTruck.hours)
+        intent.putExtra("address", foodTruck.address)
+        intent.putExtra("rating", foodTruck.rating)
+
+        startActivity(intent)
     }
 
     private fun setUpMap() {
@@ -120,7 +134,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         if (foodTrucksFromDb != null) {
             for (foodTruck in foodTrucksFromDb) {
                 val place = LatLng(foodTruck.latitude!!, foodTruck.longitude!!)
-                map.addMarker(MarkerOptions().position(place).title(foodTruck.name))
+                val marker = map.addMarker(MarkerOptions().position(place).title(foodTruck.name))
+                marker.tag = foodTruck
             }
         }
     }
