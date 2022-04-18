@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.example.foodtruckapp.database.AppDatabase
 import com.example.foodtruckapp.databinding.ActivityMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -113,19 +114,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     }
 
     private fun getLocationsFromDatabase(){
-        //TODO: add location markers from database
+        val database = AppDatabase.getInstance(this)
+        val foodTrucksFromDb = database?.foodTruckDao()?.getAll()
 
-        val dictionary = mapOf(
-            "pinch" to mapOf("lat" to 30.283068838451634, "long" to -97.74089692091488),
-            "pepe's tacos" to mapOf("lat" to 30.2739933630959, "long" to -97.7508396343992),
-            "chef hong" to mapOf("lat" to 30.288789703098274, "long" to -97.74574635372068),
-            "el taco ranchero" to mapOf("lat" to  37.42263473382312, "long" to -122.09414468856993),
-            "paper platez" to mapOf("lat" to 37.414965828988784, "long" to -122.09174142932372),
-            "the cookout foodtruck" to mapOf("lat" to 37.41639741750566, "long" to -122.09950910653023)
-        )
-        dictionary.forEach{ (key, value) ->
-            val place = LatLng(value["lat"]!!, value["long"]!!)
-            map.addMarker(MarkerOptions().position(place).title(key))
+        if (foodTrucksFromDb != null) {
+            for (foodTruck in foodTrucksFromDb) {
+                val place = LatLng(foodTruck.latitude!!, foodTruck.longitude!!)
+                map.addMarker(MarkerOptions().position(place).title(foodTruck.name))
+            }
         }
     }
 }
