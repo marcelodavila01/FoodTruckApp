@@ -65,7 +65,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userInput_fullName"
-        tools:hint="Email" />
+        android:hint="Email" />
 
     <EditText
         android:id="@+id/userInput_password"
@@ -79,7 +79,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userInput_email"
-        tools:hint="Password" />
+        android:hint="Password" />
 
     <Button
         android:id="@+id/signUp_button"

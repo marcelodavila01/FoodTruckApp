@@ -10,12 +10,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(
-    version = 1,
-    entities = [FoodTruck::class],
+    version = 2,
+    entities = [
+        FoodTruck::class,
+        Customer::class,
+    ],
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodTruckDao(): FoodTruckDao
+    abstract fun customerDao(): CustomerDao
 
     fun populateFoodTrucks(foodTruckDao: FoodTruckDao) {
         foodTruckDao.deleteAll();
@@ -30,7 +34,6 @@ abstract class AppDatabase : RoomDatabase() {
         fun getInstance(context: Context): AppDatabase? {
             if (INSTANCE == null) {
                 synchronized(AppDatabase::class) {
-                    context.deleteDatabase("app-db")
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
