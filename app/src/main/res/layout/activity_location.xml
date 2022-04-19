@@ -3,48 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FF4B3A">
 
     <ImageView
         android:id="@+id/logo_location"
-        android:layout_width="91dp"
-        android:layout_height="107dp"
-        android:layout_marginTop="144dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="112dp"
+        android:scaleType="centerCrop"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/foodtruckapplogo2" />
+        app:srcCompat="@drawable/cibus_logo2" />
 
     <TextView
         android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="Welcome,"
-        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:textSize="48sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_location" />
 
     <TextView
         android:id="@+id/displayName_text"
-        android:layout_width="235dp"
-        android:layout_height="45dp"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
         android:layout_marginTop="-10dp"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="Display Name!"
-        android:textSize="36sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="42sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
 
     <TextView
         android:id="@+id/discover_text"
-        android:layout_width="200sp"
+        android:layout_width="240sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="Discover amazing food truck food nearby."
         android:textAlignment="center"
+        android:textColor="#99FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +69,11 @@
         android:id="@+id/selectLocation_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="SELECT VIEW"
+        android:textColor="#99FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,26 +81,36 @@
 
     <Button
         android:id="@+id/Map_button"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Map"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/montserrat_semibold"
+        android:onClick="openMap"
+        android:text="Map View"
+        android:textAllCaps="false"
+        android:textColor="#FF460A"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectLocation_text"
-        android:onClick="openMap"/>
+        app:layout_constraintTop_toBottomOf="@+id/selectLocation_text" />
 
     <Button
         android:id="@+id/List_button"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="List"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/montserrat_semibold"
+        android:onClick="openList"
+        android:text="List View"
+        android:textAllCaps="false"
+        android:textColor="#FF460A"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Map_button"
-        android:onClick="openList"/>
+        app:layout_constraintTop_toBottomOf="@+id/Map_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
