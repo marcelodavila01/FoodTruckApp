@@ -20,7 +20,15 @@ class SignupActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        setupToolbar()
+
         loginExistingCustomer()
+    }
+
+    fun setupToolbar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     fun loginExistingCustomer() {
@@ -29,6 +37,7 @@ class SignupActivity : AppCompatActivity() {
 
         if (customers != null && customers.isNotEmpty()) {
             val loggedInCustomer = customers.last()
+
             val myToast = Toast.makeText(this, "Logged in ${loggedInCustomer.name}", Toast.LENGTH_LONG)
             myToast.show()
 

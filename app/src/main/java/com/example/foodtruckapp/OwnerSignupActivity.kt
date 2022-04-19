@@ -20,7 +20,15 @@ class OwnerSignupActivity : AppCompatActivity(){
         val view = binding.root
         setContentView(view)
 
+        setupToolbar()
+
         loginExistingCustomer()
+    }
+
+    fun setupToolbar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     fun loginExistingCustomer() {
