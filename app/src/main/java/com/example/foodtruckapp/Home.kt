@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 
 class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +17,7 @@ class Home : AppCompatActivity() {
     }
 
     fun selectOwner(view: View) {
-        val myToast = Toast.makeText(this, "coming soon", Toast.LENGTH_LONG)
-        myToast.show()
+        val intent = Intent(this, OwnerSignupActivity::class.java)
+        startActivity(intent)
     }
 }

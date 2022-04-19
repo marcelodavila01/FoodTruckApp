@@ -3,29 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1824074074074074" />
-        <entry key="app/src/main/res/drawable/custom_account_circle_ic.xml" value="0.23703703703703705" />
-        <entry key="app/src/main/res/drawable/custom_button.xml" value="0.25" />
-        <entry key="app/src/main/res/drawable/custom_button2.xml" value="0.2734375" />
-        <entry key="app/src/main/res/drawable/custom_button_orange.xml" value="0.23703703703703705" />
-        <entry key="app/src/main/res/drawable/custom_edittext.xml" value="0.2734375" />
-        <entry key="app/src/main/res/drawable/custom_email_ic.xml" value="0.23703703703703705" />
-        <entry key="app/src/main/res/drawable/custom_lock_ic.xml" value="0.23703703703703705" />
-        <entry key="app/src/main/res/drawable/ic_account_circle.xml" value="0.2734375" />
-        <entry key="app/src/main/res/drawable/ic_account_circle_focused.xml" value="0.2734375" />
-        <entry key="app/src/main/res/drawable/ic_email.xml" value="0.2734375" />
-        <entry key="app/src/main/res/drawable/ic_email_focused.xml" value="0.2734375" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1824074074074074" />
-        <entry key="app/src/main/res/drawable/ic_lock.xml" value="0.2734375" />
-        <entry key="app/src/main/res/drawable/ic_lock_focused.xml" value="0.2734375" />
-        <entry key="app/src/main/res/font/montserrat_semibold.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.20521832777124394" />
-        <entry key="app/src/main/res/layout/activity_location.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20969202898550723" />
-        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/custom_email_ic.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/custom_location_ic.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/custom_lock_ic.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/ic_account_circle.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/ic_email.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/ic_location.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/ic_location_focused.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/ic_lock.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/drawable/ic_lock_focused.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/activity_food_truck_detail.xml" value="0.19722900390625" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/activity_location.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24864130434782608" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.13722826086956522" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2056159420289855" />
-        <entry key="app/src/main/res/layout/content_main.xml" value="0.20969202898550723" />
+        <entry key="app/src/main/res/layout/activity_owner_signup.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_ownersignup.xml" value="0.13179347826086957" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/owner_signup.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.14114583333333333" />
       </map>
     </option>

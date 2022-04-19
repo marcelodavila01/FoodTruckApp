@@ -16,9 +16,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/cibus_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/cibus_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodtruckApp">
         <activity
@@ -32,6 +32,9 @@
             android:exported="false" />
         <activity
             android:name=".SignupActivity"
+            android:parentActivityName=".Home" />
+        <activity
+            android:name=".OwnerSignupActivity"
             android:parentActivityName=".Home" />
         <activity
             android:name=".LocationActivity"
