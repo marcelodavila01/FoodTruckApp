@@ -17,7 +17,7 @@ class FoodTruckDetailActivity : AppCompatActivity() {
         setupToolbar()
 
         setDetails(
-            intent.getStringExtra("name", )!!,
+            intent.getStringExtra("name")!!,
             intent.getStringExtra("hours")!!,
             intent.getStringExtra("address")!!,
             intent.getDoubleExtra("rating", 0.0),
