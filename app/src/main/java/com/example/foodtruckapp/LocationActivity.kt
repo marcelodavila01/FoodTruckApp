@@ -2,6 +2,7 @@ package com.example.foodtruckapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -12,6 +13,7 @@ import com.example.foodtruckapp.database.AppDatabase
 class LocationActivity : AppCompatActivity() {
 
     private lateinit var binding: LocationActivity
+    private lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +21,14 @@ class LocationActivity : AppCompatActivity() {
 
         setupToolbar()
 
-        val currentCustomer = AppDatabase.getInstance(this)?.customerDao()?.getLast()
+        database = AppDatabase.getInstance(this)!!
+        val currentCustomer = database?.customerDao()?.getLast()
         findViewById<TextView>(R.id.displayName_text).text = currentCustomer?.name
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return true
     }
 
     fun setupToolbar() {
@@ -32,6 +40,14 @@ class LocationActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             //user click back
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            true
+        }
+
+        R.id.action_log_out -> {
+            database.customerDao().deleteAll()
+            database.foodTruckDao().deleteOwner()
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
             true

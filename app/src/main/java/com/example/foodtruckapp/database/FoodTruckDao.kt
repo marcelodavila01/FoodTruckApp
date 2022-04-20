@@ -16,6 +16,9 @@ interface FoodTruckDao {
     @Query("DELETE FROM food_trucks WHERE owner_added != 1")
     fun deleteAllInitial()
 
+    @Query("DELETE FROM food_trucks WHERE owner_added = 1")
+    fun deleteOwner()
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(foodTruck: FoodTruck)
 }
