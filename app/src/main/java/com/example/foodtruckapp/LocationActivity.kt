@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodtruckapp.FifthModel.FifthFragment
 
@@ -16,6 +17,9 @@ class LocationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_location)
 
         setupToolbar()
+
+        val customerName = intent.getStringExtra("fullName")
+        findViewById<TextView>(R.id.displayName_text).text = customerName
     }
 
     fun setupToolbar() {

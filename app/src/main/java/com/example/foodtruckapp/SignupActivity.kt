@@ -37,15 +37,39 @@ class SignupActivity : AppCompatActivity() {
 
         if (customers != null && customers.isNotEmpty()) {
             val loggedInCustomer = customers.last()
-
-            val myToast = Toast.makeText(this, "Logged in ${loggedInCustomer.name}", Toast.LENGTH_LONG)
-            myToast.show()
+            showToast("Logged in ${loggedInCustomer.name}")
 
             openLocationActivity()
         }
     }
 
+    fun showToast(message: String) {
+        val myToast = Toast.makeText(this, message, Toast.LENGTH_LONG)
+        myToast.show()
+    }
+
+    fun checkCustomerInfo(): Boolean {
+        if (binding.userInputFullName.text.toString().isEmpty()) {
+            showToast("Enter a name")
+            return false;
+        }
+        if (binding.userInputEmail.text.toString().isEmpty()) {
+            showToast("Enter an email")
+            return false;
+        }
+        if (binding.userInputPassword.text.toString().isEmpty()) {
+            showToast("Enter a password")
+            return false;
+        }
+
+        return true;
+    }
+
     fun createCustomer() {
+        if (!checkCustomerInfo()) {
+            return;
+        }
+
         val newCustomer = Customer(
             0,
             binding.userInputFullName.text.toString(),
@@ -57,11 +81,12 @@ class SignupActivity : AppCompatActivity() {
         if (database != null) {
             database.customerDao().insert(newCustomer)
         }
+
+        openLocationActivity()
     }
 
     fun sendData(view: View) {
         createCustomer()
-        openLocationActivity()
     }
 
     fun openLocationActivity() {
