@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(
-    version = 2,
+    version = 3,
     entities = [
         FoodTruck::class,
         Customer::class,
@@ -22,7 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun customerDao(): CustomerDao
 
     fun populateFoodTrucks(foodTruckDao: FoodTruckDao) {
-        foodTruckDao.deleteAll();
+        foodTruckDao.deleteAllInitial()
         for(foodTruck in InitialFoodTruckData.data) {
             foodTruckDao.insert(foodTruck)
         }
@@ -35,7 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(AppDatabase::class) {
 //                    uncomment to reset database
-                    context.deleteDatabase("app-db")
+//                    context.deleteDatabase("app-db")
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,

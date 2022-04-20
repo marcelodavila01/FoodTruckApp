@@ -15,4 +15,7 @@ interface CustomerDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(customer: Customer)
+
+    @Query("SELECT * FROM customers ORDER BY ID DESC LIMIT 1")
+    fun getLast(): Customer
 }

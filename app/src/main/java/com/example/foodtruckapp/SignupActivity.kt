@@ -89,10 +89,8 @@ class SignupActivity : AppCompatActivity() {
         createCustomer()
     }
 
-    fun openLocationActivity() {
-        val intent = Intent(this, LocationActivity::class.java).apply{
-            putExtra("fullName", binding.userInputFullName.text.toString())
-        }
+    private fun openLocationActivity() {
+        val intent = Intent(this, LocationActivity::class.java)
         startActivity(intent)
     }
 }

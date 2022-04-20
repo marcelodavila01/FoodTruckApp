@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodtruckapp.FifthModel.FifthFragment
+import com.example.foodtruckapp.database.AppDatabase
 
 class LocationActivity : AppCompatActivity() {
 
@@ -18,8 +19,8 @@ class LocationActivity : AppCompatActivity() {
 
         setupToolbar()
 
-        val customerName = intent.getStringExtra("fullName")
-        findViewById<TextView>(R.id.displayName_text).text = customerName
+        val currentCustomer = AppDatabase.getInstance(this)?.customerDao()?.getLast()
+        findViewById<TextView>(R.id.displayName_text).text = currentCustomer?.name
     }
 
     fun setupToolbar() {

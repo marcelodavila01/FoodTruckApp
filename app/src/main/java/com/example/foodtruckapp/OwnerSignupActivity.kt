@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodtruckapp.database.AppDatabase
 import com.example.foodtruckapp.database.Customer
+import com.example.foodtruckapp.database.FoodTruck
 import com.example.foodtruckapp.databinding.ActivityOwnerSignupBinding
 import java.util.*
 
@@ -25,12 +26,26 @@ class OwnerSignupActivity : AppCompatActivity(){
         setContentView(view)
 
         setupToolbar()
+
+        loginExistingCustomer()
     }
 
     fun setupToolbar() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun loginExistingCustomer() {
+        val database = AppDatabase.getInstance(this)
+        val customers = database?.customerDao()?.getAll()
+
+        if (customers != null && customers.isNotEmpty()) {
+            val loggedInCustomer = customers.last()
+            showToast("Logged in ${loggedInCustomer.name}")
+
+            openLocationActivity()
+        }
     }
 
     fun showToast(message: String) {
@@ -57,11 +72,10 @@ class OwnerSignupActivity : AppCompatActivity(){
             return false;
         }
 
-        val addresses = findAddress(addressInput)
-        if (addresses == null ||
-                addresses.size == 0 ||
-                !addresses[0].hasLatitude() ||
-                !addresses[0].hasLatitude()) {
+        val address = findAddress(addressInput)
+        if (address == null ||
+                !address.hasLatitude() ||
+                !address.hasLatitude()) {
             showToast("Address not found")
             return false
         }
@@ -69,14 +83,18 @@ class OwnerSignupActivity : AppCompatActivity(){
         return true;
     }
 
-    fun findAddress(input: String): MutableList<Address>? {
+    fun findAddress(input: String): Address? {
         val geocoder = Geocoder(this, Locale.getDefault())
         val addresses = geocoder.getFromLocationName(input, 1)
         if (addresses.size == 0 || !addresses[0].hasLatitude() || !addresses[0].hasLatitude()) {
             showToast("Address not found")
         }
 
-        return addresses
+        if (addresses.size > 0) {
+            return addresses[0]
+        }
+
+        return null
     }
 
     fun createOwner() {
@@ -91,9 +109,23 @@ class OwnerSignupActivity : AppCompatActivity(){
             binding.userInputPassword.text.toString(),
         )
 
+        val addressInput = binding.truckLocation.text.toString()
+        val address = findAddress(addressInput)
+        val newFoodTruck = FoodTruck(
+            0,
+            binding.userInputFoodTruckName.text.toString(),
+            address!!.latitude,
+            address!!.longitude,
+            "TBD",
+            addressInput,
+            5.0,
+            true,
+        )
+
         val database = AppDatabase.getInstance(this)
         if (database != null) {
             database.customerDao().insert(newCustomer)
+            database.foodTruckDao().insert(newFoodTruck)
 
             openLocationActivity()
         }
@@ -104,9 +136,7 @@ class OwnerSignupActivity : AppCompatActivity(){
     }
 
     fun openLocationActivity() {
-        val intent = Intent(this, LocationActivity::class.java).apply{
-            putExtra("fullName", binding.userInputFoodTruckName.text.toString())
-        }
+        val intent = Intent(this, LocationActivity::class.java)
         startActivity(intent)
     }
 }

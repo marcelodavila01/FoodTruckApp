@@ -11,6 +11,7 @@ class InitialFoodTruckData {
                 "11:30am - 8:00pm",
                 "2011 Whitis Ave, Austin, TX 78705",
                 4.3,
+                false,
             ),
             FoodTruck(
                 2,
@@ -20,6 +21,7 @@ class InitialFoodTruckData {
                 "11:00am - 8:00pm",
                 "704 N Lamar Blvd, Austin, TX 78703",
                 4.5,
+                false,
             ),
             FoodTruck(
                 3,
@@ -29,6 +31,7 @@ class InitialFoodTruckData {
                 "11:00am - 8:00pm",
                 "907 W 24th St, Austin, TX 78705",
                 4.8,
+                false,
             ),
             FoodTruck(
                 4,
@@ -38,6 +41,7 @@ class InitialFoodTruckData {
                 "10:00am - 8:30pm",
                 "2490 Charleston Rd, Mountain View, CA 94043",
                 4.7,
+                false,
             ),
             FoodTruck(
                 5,
@@ -47,6 +51,7 @@ class InitialFoodTruckData {
                 "11:00am - 9:00pm",
                 "2135 Old Middlefield Way, Mountain View, CA 94043",
                 5.0,
+                false,
             ),
             FoodTruck(
                 6,
@@ -56,6 +61,7 @@ class InitialFoodTruckData {
                 "5:00am - 9:00pm",
                 "2534 Old Middlefield Way, Mountain View, CA 94043",
                 4.8,
+                false,
             ),
         )
     }
