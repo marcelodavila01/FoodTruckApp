@@ -50,7 +50,7 @@ class LocationActivity : AppCompatActivity() {
 
     fun openList(view: View)
     {
-        val intent = Intent(this, FifthFragment::class.java)
+        val intent = Intent(this, ListActivity::class.java)
         startActivity(intent)
     }
 }

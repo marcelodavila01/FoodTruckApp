@@ -22,11 +22,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodtruckApp">
         <activity
+            android:name=".ListActivity"
+            android:exported="false" />
+        <activity
             android:name=".FoodTruckDetailActivity"
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".MainActivity2"
             android:exported="false" />
