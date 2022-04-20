@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_email_focused.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_location_focused.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_lock_focused.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_food_truck_detail.xml" value="0.19722900390625" />
+        <entry key="app/src/main/res/layout/activity_food_truck_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_list.xml" value="0.15653495440729484" />
         <entry key="app/src/main/res/layout/activity_location.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.13722826086956522" />

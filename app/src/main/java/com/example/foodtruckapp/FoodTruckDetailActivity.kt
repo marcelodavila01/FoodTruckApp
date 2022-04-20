@@ -8,22 +8,35 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 
 class FoodTruckDetailActivity : AppCompatActivity() {
+    private var backToMap = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_truck_detail)
 
+        setupToolbar()
+
         setDetails(
-            intent.getStringExtra("name", )!!,
+            intent.getStringExtra("name")!!,
             intent.getStringExtra("hours")!!,
             intent.getStringExtra("address")!!,
             intent.getDoubleExtra("rating", 0.0),
         )
+
+        backToMap = intent.getBooleanExtra("fromMap", false)
 
         val actionBar: ActionBar? = supportActionBar
         if (actionBar != null) {
             supportActionBar!!.setHomeButtonEnabled(true)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
+    }
+
+
+    fun setupToolbar() {
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     fun setDetails(name: String, hours: String, address: String, rating: Double) {
@@ -36,7 +49,11 @@ class FoodTruckDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             //user click back
-            val intent = Intent(this, MapsActivity::class.java)
+            var intent = Intent(this, ListActivity::class.java)
+            if (backToMap) {
+                intent = Intent(this, MapsActivity::class.java)
+            }
+
             startActivity(intent)
             true
         }

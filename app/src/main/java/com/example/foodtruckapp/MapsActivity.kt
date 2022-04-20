@@ -112,6 +112,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         intent.putExtra("hours", foodTruck.hours)
         intent.putExtra("address", foodTruck.address)
         intent.putExtra("rating", foodTruck.rating)
+        intent.putExtra("fromMap", true)
 
         startActivity(intent)
     }
