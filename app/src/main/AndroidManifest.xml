@@ -35,10 +35,12 @@
             android:exported="false" />
         <activity
             android:name=".SignupActivity"
-            android:parentActivityName=".Home" />
+            android:parentActivityName=".Home"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name=".OwnerSignupActivity"
-            android:parentActivityName=".Home" />
+            android:parentActivityName=".Home"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name=".LocationActivity"
             android:parentActivityName=".SignupActivity" />
