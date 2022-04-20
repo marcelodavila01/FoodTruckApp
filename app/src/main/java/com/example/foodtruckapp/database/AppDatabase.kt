@@ -35,7 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(AppDatabase::class) {
 //                    uncomment to reset database
-//                    context.deleteDatabase("app-db")
+                    context.deleteDatabase("app-db")
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
