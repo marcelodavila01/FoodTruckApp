@@ -42,6 +42,9 @@
         <activity
             android:name=".LocationActivity"
             android:parentActivityName=".SignupActivity" />
+        <activity
+            android:name=".FifthItem"
+            android:parentActivityName=".LocationActivity"/>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
