@@ -120,6 +120,7 @@ class OwnerSignupActivity : AppCompatActivity(){
             addressInput,
             5.0,
             true,
+            null,
         )
 
         val database = AppDatabase.getInstance(this)

@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/drawable/ic_lock.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/ic_lock_focused.xml" value="0.2734375" />
         <entry key="app/src/main/res/font/montserrat_semibold.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_food_truck_detail.xml" value="0.321875" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.20521832777124394" />
         <entry key="app/src/main/res/layout/activity_location.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20969202898550723" />

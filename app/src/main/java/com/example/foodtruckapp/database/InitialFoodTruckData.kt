@@ -12,6 +12,7 @@ class InitialFoodTruckData {
                 "2011 Whitis Ave, Austin, TX 78705",
                 4.3,
                 false,
+                "pinch"
             ),
             FoodTruck(
                 2,
@@ -22,6 +23,7 @@ class InitialFoodTruckData {
                 "704 N Lamar Blvd, Austin, TX 78703",
                 4.5,
                 false,
+                "pepe_s_tacos"
             ),
             FoodTruck(
                 3,
@@ -32,6 +34,7 @@ class InitialFoodTruckData {
                 "907 W 24th St, Austin, TX 78705",
                 4.8,
                 false,
+                "chef_hong"
             ),
             FoodTruck(
                 4,
@@ -42,6 +45,7 @@ class InitialFoodTruckData {
                 "2490 Charleston Rd, Mountain View, CA 94043",
                 4.7,
                 false,
+                "el_taco_ranchero"
             ),
             FoodTruck(
                 5,
@@ -52,6 +56,7 @@ class InitialFoodTruckData {
                 "2135 Old Middlefield Way, Mountain View, CA 94043",
                 5.0,
                 false,
+                "paper_platez"
             ),
             FoodTruck(
                 6,
@@ -62,6 +67,7 @@ class InitialFoodTruckData {
                 "2534 Old Middlefield Way, Mountain View, CA 94043",
                 4.8,
                 false,
+                "the_cookout_food_truck"
             ),
         )
     }

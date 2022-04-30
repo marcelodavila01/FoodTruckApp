@@ -15,4 +15,5 @@ data class FoodTruck(
     @ColumnInfo(name = "address") val address: String?,
     @ColumnInfo(name = "rating") val rating: Double?,
     @ColumnInfo(name = "owner_added") val ownerAdded: Boolean?,
+    @ColumnInfo(name = "image_name") val imageName: String?,
 )

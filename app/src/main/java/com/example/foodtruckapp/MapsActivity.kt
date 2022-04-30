@@ -113,6 +113,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         intent.putExtra("address", foodTruck.address)
         intent.putExtra("rating", foodTruck.rating)
         intent.putExtra("fromMap", true)
+        intent.putExtra("image_name", foodTruck?.imageName)
 
         startActivity(intent)
     }

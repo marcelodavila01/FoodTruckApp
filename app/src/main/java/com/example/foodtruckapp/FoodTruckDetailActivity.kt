@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 
@@ -21,6 +22,7 @@ class FoodTruckDetailActivity : AppCompatActivity() {
             intent.getStringExtra("hours")!!,
             intent.getStringExtra("address")!!,
             intent.getDoubleExtra("rating", 0.0),
+            intent.getStringExtra("image_name"),
         )
 
         backToMap = intent.getBooleanExtra("fromMap", false)
@@ -39,11 +41,16 @@ class FoodTruckDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun setDetails(name: String, hours: String, address: String, rating: Double) {
+    fun setDetails(name: String, hours: String, address: String, rating: Double, imageName: String?) {
         findViewById<TextView>(R.id.name).setText(name)
         findViewById<TextView>(R.id.hours).setText("Hours: $hours")
         findViewById<TextView>(R.id.address).setText("Address: \n$address")
         findViewById<TextView>(R.id.rating).setText("${rating.toString()} / 5.0")
+
+        if (imageName != null && imageName != ""){
+            val imageResource = applicationContext.resources.getIdentifier(imageName, "drawable", applicationContext.packageName)
+            findViewById<ImageView>(R.id.image).setImageResource(imageResource)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {

@@ -37,6 +37,7 @@ class ListItemHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickLi
         intent.putExtra("hours", foodTruck?.hours)
         intent.putExtra("address", foodTruck?.address)
         intent.putExtra("rating", foodTruck?.rating)
+        intent.putExtra("image_name", foodTruck?.imageName)
 
         view.context.startActivity(intent)
     }
