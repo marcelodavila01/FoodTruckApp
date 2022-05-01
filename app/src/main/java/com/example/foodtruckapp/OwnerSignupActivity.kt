@@ -15,7 +15,6 @@ import java.util.*
 
 
 class OwnerSignupActivity : AppCompatActivity(){
-
     private lateinit var binding: ActivityOwnerSignupBinding
     private  lateinit var database: AppDatabase
 
@@ -129,12 +128,6 @@ class OwnerSignupActivity : AppCompatActivity(){
             return
         }
 
-        val newOwner = Owner(
-            binding.userInputFoodTruckName.text.toString(),
-            binding.userInputEmail.text.toString(),
-            binding.userInputPassword.text.toString(),
-        )
-
         val addressInput = binding.truckLocation.text.toString()
         val address = findAddress(addressInput)!!
         val newFoodTruck = FoodTruck(
@@ -147,10 +140,16 @@ class OwnerSignupActivity : AppCompatActivity(){
             true,
             null,
         )
+        val savedFoodTruckId = database.foodTruckDao().insert(newFoodTruck)
 
+        val newOwner = Owner(
+            binding.userInputFoodTruckName.text.toString(),
+            binding.userInputEmail.text.toString(),
+            binding.userInputPassword.text.toString(),
+            savedFoodTruckId,
+        )
         database.ownerDao().insert(newOwner)
         CurrentLogin.loginOwner(newOwner)
-        database.foodTruckDao().insert(newFoodTruck)
 
         openLocationActivity()
     }

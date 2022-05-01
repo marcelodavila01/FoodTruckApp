@@ -16,5 +16,5 @@ data class FoodTruck(
     @ColumnInfo(name = "owner_added") val ownerAdded: Boolean?,
     @ColumnInfo(name = "image_name") val imageName: String?,
 ) {
-    @PrimaryKey(autoGenerate = true) var id: Int? = null
+    @PrimaryKey(autoGenerate = true) var id: Long? = null
 }

@@ -107,6 +107,7 @@ class LocationActivity : AppCompatActivity() {
     }
 
     fun openEdit(view: View) {
-
+        val intent = Intent(this, FoodTruckEditActivity::class.java)
+        startActivity(intent)
     }
 }

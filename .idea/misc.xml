@@ -8,11 +8,14 @@
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/custom_button2.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/custom_button_orange.xml" value="0.23703703703703705" />
+        <entry key="app/src/main/res/drawable/custom_clock_ic.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/custom_edittext.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/custom_email_ic.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/drawable/custom_lock_ic.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/drawable/ic_account_circle.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/ic_account_circle_focused.xml" value="0.2734375" />
+        <entry key="app/src/main/res/drawable/ic_clock.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_clock_focused.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_email.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/ic_email_focused.xml" value="0.2734375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1824074074074074" />
@@ -20,6 +23,7 @@
         <entry key="app/src/main/res/drawable/ic_lock_focused.xml" value="0.2734375" />
         <entry key="app/src/main/res/font/montserrat_semibold.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_food_truck_detail.xml" value="0.321875" />
+        <entry key="app/src/main/res/layout/activity_food_truck_edit.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.20521832777124394" />
         <entry key="app/src/main/res/layout/activity_location.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />

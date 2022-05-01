@@ -1,9 +1,6 @@
 package com.example.foodtruckapp.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface FoodTruckDao {
@@ -20,5 +17,14 @@ interface FoodTruckDao {
     fun deleteOwner()
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(foodTruck: FoodTruck)
+    fun insert(foodTruck: FoodTruck): Long
+
+    @Query("SELECT * FROM food_trucks WHERE id = :id")
+    fun getById(id: Long): FoodTruck?
+
+    @Update(entity = FoodTruck::class)
+    fun update(obj: FoodTruck)
+
+    @Query("DELETE FROM food_trucks WHERE id = :id")
+    fun deleteById(id: Long)
 }

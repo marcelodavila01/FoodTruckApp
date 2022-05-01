@@ -10,6 +10,7 @@ data class Owner(
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "email") val email: String?,
     @ColumnInfo(name = "plain_password") val password: String?,
+    @ColumnInfo(name = "food_truck_id") val foodTruckId: Long,
 ) {
-    @PrimaryKey(autoGenerate = true) var id: Int? = null
+    @PrimaryKey(autoGenerate = true) var id: Long? = null
 }

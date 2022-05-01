@@ -24,4 +24,7 @@ interface OwnerDao {
 
     @Query("SELECT * FROM owners WHERE email = :email")
     fun getByEmail(email: String): Owner?
+
+    @Query("DELETE FROM owners WHERE id = :id")
+    fun deleteById(id: Long)
 }

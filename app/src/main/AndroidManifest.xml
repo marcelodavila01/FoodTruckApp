@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodtruckApp">
         <activity
+            android:name=".FoodTruckEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".OwnerLoginActivity"
             android:exported="false" />
         <activity
