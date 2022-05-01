@@ -4,6 +4,7 @@ object CurrentLogin {
     private var currentCustomer: Customer? = null
     private var currentOwner: Owner? = null
     var isOwner = false
+    var seenAnimation = false
 
     fun loginCustomer(customer: Customer) {
         currentCustomer = customer
