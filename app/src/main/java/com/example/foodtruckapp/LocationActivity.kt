@@ -7,8 +7,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foodtruckapp.FifthModel.FifthFragment
 import com.example.foodtruckapp.database.AppDatabase
+import com.example.foodtruckapp.database.CurrentLogin
 
 class LocationActivity : AppCompatActivity() {
 
@@ -22,12 +22,13 @@ class LocationActivity : AppCompatActivity() {
         setupToolbar()
 
         database = AppDatabase.getInstance(this)!!
-        val currentCustomer = database?.customerDao()?.getLast()
+
+        val currentCustomer = CurrentLogin.currentCustomer
         findViewById<TextView>(R.id.displayName_text).text = currentCustomer?.name
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu);
+        menuInflater.inflate(R.menu.menu_with_logout, menu);
         return true
     }
 
@@ -46,8 +47,7 @@ class LocationActivity : AppCompatActivity() {
         }
 
         R.id.action_log_out -> {
-            database.customerDao().deleteAll()
-            database.foodTruckDao().deleteOwner()
+            CurrentLogin.logoutCustomer()
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
             true

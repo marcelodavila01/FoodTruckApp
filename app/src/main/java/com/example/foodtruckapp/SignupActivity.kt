@@ -2,16 +2,20 @@ package com.example.foodtruckapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodtruckapp.database.AppDatabase
+import com.example.foodtruckapp.database.CurrentLogin
 import com.example.foodtruckapp.database.Customer
 import com.example.foodtruckapp.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
+    private lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +23,8 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        database = AppDatabase.getInstance(this)!!
 
         setupToolbar()
 
@@ -31,13 +37,31 @@ class SignupActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun loginExistingCustomer() {
-        val database = AppDatabase.getInstance(this)
-        val customers = database?.customerDao()?.getAll()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_with_login, menu);
+        return true
+    }
 
-        if (customers != null && customers.isNotEmpty()) {
-            val loggedInCustomer = customers.last()
-            showToast("Logged in ${loggedInCustomer.name}")
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_log_in -> {
+            //user click back
+            var intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            true
+        }
+
+        else -> {
+            // If we got here, the user's action was not recognized.
+            // Invoke the superclass to handle it.
+            super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun loginExistingCustomer() {
+        val currentCustomer = CurrentLogin.currentCustomer
+
+        if (currentCustomer != null) {
+            showToast("Logged in ${currentCustomer.name}")
 
             openLocationActivity()
         }
@@ -51,18 +75,24 @@ class SignupActivity : AppCompatActivity() {
     fun checkCustomerInfo(): Boolean {
         if (binding.userInputFullName.text.toString().isEmpty()) {
             showToast("Enter a name")
-            return false;
+            return false
         }
-        if (binding.userInputEmail.text.toString().isEmpty()) {
+        val emailInput = binding.userInputEmail.text.toString()
+        if (emailInput.isEmpty()) {
             showToast("Enter an email")
-            return false;
+            return false
         }
         if (binding.userInputPassword.text.toString().isEmpty()) {
             showToast("Enter a password")
-            return false;
+            return false
         }
 
-        return true;
+        if (database.customerDao().getByEmail(emailInput) != null) {
+            showToast("Email already exists")
+            return false
+        }
+
+        return true
     }
 
     fun createCustomer() {
@@ -77,10 +107,8 @@ class SignupActivity : AppCompatActivity() {
             binding.userInputPassword.text.toString(),
         )
 
-        val database = AppDatabase.getInstance(this)
-        if (database != null) {
-            database.customerDao().insert(newCustomer)
-        }
+        database.customerDao().insert(newCustomer)
+        CurrentLogin.loginCustomer(newCustomer)
 
         openLocationActivity()
     }

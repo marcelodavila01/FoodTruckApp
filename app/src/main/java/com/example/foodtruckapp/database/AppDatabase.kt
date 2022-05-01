@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(
-    version = 4,
+    version = 5,
     entities = [
         FoodTruck::class,
         Customer::class,

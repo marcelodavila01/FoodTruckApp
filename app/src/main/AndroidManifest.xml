@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodtruckApp">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListActivity"
             android:exported="false" />
         <activity
@@ -36,17 +39,17 @@
         <activity
             android:name=".SignupActivity"
             android:parentActivityName=".Home"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".OwnerSignupActivity"
             android:parentActivityName=".Home"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".LocationActivity"
             android:parentActivityName=".SignupActivity" />
         <activity
             android:name=".FifthItem"
-            android:parentActivityName=".LocationActivity"/>
+            android:parentActivityName=".LocationActivity" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

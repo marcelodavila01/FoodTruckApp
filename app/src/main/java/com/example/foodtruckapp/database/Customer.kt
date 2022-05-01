@@ -10,5 +10,5 @@ data class Customer(
     @PrimaryKey(autoGenerate = true) val id: Int?,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "email") val email: String?,
-    @ColumnInfo(name = "password") val password: String?,
+    @ColumnInfo(name = "plain_password") val password: String?,
 )
