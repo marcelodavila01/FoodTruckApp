@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.os.Looper
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +12,7 @@ import androidx.core.app.ActivityCompat
 import com.example.foodtruckapp.database.AppDatabase
 import com.example.foodtruckapp.database.FoodTruck
 import com.example.foodtruckapp.databinding.ActivityMapsBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,7 +22,8 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener,
+    ActivityCompat.OnRequestPermissionsResultCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -129,13 +130,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         map.isMyLocationEnabled = true
 
         fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
             }
         }
+
+        val locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                locationResult ?: return
+                locationResult.lastLocation
+
+                lastLocation = locationResult.lastLocation
+                val currentLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
+            }
+        }
+        fusedLocationClient.requestLocationUpdates(
+            LocationRequest.create(),
+            locationCallback,
+            Looper.getMainLooper())
     }
 
     private fun getLocationsFromDatabase(){
@@ -150,4 +165,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             }
         }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
+            super.onRequestPermissionsResult(
+                requestCode,
+                permissions,
+                grantResults
+            )
+            return
+        }
+
+        setUpMap()
+    }
+
 }

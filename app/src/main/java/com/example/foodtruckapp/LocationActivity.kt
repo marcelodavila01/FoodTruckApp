@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,8 @@ class LocationActivity : AppCompatActivity() {
             } else {
                 findViewById<TextView>(R.id.displayName_text).text = currentOwner.name
             }
+
+            findViewById<Button>(R.id.edit_button).visibility = View.VISIBLE
         } else {
             val currentCustomer = CurrentLogin.getCurrentCustomer()
             if (currentCustomer == null) {
@@ -41,6 +44,8 @@ class LocationActivity : AppCompatActivity() {
             } else {
                 findViewById<TextView>(R.id.displayName_text).text = currentCustomer.name
             }
+
+            findViewById<Button>(R.id.edit_button).visibility = View.GONE
         }
     }
 
@@ -99,5 +104,9 @@ class LocationActivity : AppCompatActivity() {
     fun showToast(message: String) {
         val myToast = Toast.makeText(this, message, Toast.LENGTH_LONG)
         myToast.show()
+    }
+
+    fun openEdit(view: View) {
+
     }
 }
