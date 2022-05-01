@@ -58,7 +58,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
     fun loginExistingCustomer() {
-        val currentCustomer = CurrentLogin.currentCustomer
+        val currentCustomer = CurrentLogin.getCurrentCustomer()
 
         if (currentCustomer != null) {
             showToast("Logged in ${currentCustomer.name}")
@@ -101,7 +101,6 @@ class SignupActivity : AppCompatActivity() {
         }
 
         val newCustomer = Customer(
-            0,
             binding.userInputFullName.text.toString(),
             binding.userInputEmail.text.toString(),
             binding.userInputPassword.text.toString(),
@@ -119,6 +118,7 @@ class SignupActivity : AppCompatActivity() {
 
     private fun openLocationActivity() {
         val intent = Intent(this, LocationActivity::class.java)
+        CurrentLogin.isOwner = false
         startActivity(intent)
     }
 }

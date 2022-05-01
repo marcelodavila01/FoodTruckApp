@@ -4,12 +4,12 @@ import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foodtruckapp.database.AppDatabase
-import com.example.foodtruckapp.database.Customer
-import com.example.foodtruckapp.database.FoodTruck
+import com.example.foodtruckapp.database.*
 import com.example.foodtruckapp.databinding.ActivityOwnerSignupBinding
 import java.util.*
 
@@ -17,6 +17,7 @@ import java.util.*
 class OwnerSignupActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityOwnerSignupBinding
+    private  lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +26,11 @@ class OwnerSignupActivity : AppCompatActivity(){
         val view = binding.root
         setContentView(view)
 
+        database = AppDatabase.getInstance(this)!!
+
         setupToolbar()
 
-        loginExistingCustomer()
+        loginExistingOwner()
     }
 
     fun setupToolbar() {
@@ -36,13 +39,31 @@ class OwnerSignupActivity : AppCompatActivity(){
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun loginExistingCustomer() {
-        val database = AppDatabase.getInstance(this)
-        val customers = database?.customerDao()?.getAll()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_with_login, menu)
+        return true
+    }
 
-        if (customers != null && customers.isNotEmpty()) {
-            val loggedInCustomer = customers.last()
-            showToast("Logged in ${loggedInCustomer.name}")
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_log_in -> {
+            //user click back
+            val intent = Intent(this, OwnerLoginActivity::class.java)
+            startActivity(intent)
+            true
+        }
+
+        else -> {
+            // If we got here, the user's action was not recognized.
+            // Invoke the superclass to handle it.
+            super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun loginExistingOwner() {
+        val currentOwner = CurrentLogin.getCurrentOwner()
+
+        if (currentOwner != null) {
+            showToast("Logged in ${currentOwner.name}")
 
             openLocationActivity()
         }
@@ -56,20 +77,21 @@ class OwnerSignupActivity : AppCompatActivity(){
     fun checkOwnerInfo(): Boolean {
         if (binding.userInputFoodTruckName.text.toString().isEmpty()) {
             showToast("Enter a foodtruck name")
-            return false;
+            return false
         }
-        if (binding.userInputEmail.text.toString().isEmpty()) {
+        val emailInput = binding.userInputEmail.text.toString()
+        if (emailInput.isEmpty()) {
             showToast("Enter an email")
-            return false;
+            return false
         }
         if (binding.userInputPassword.text.toString().isEmpty()) {
             showToast("Enter a password")
-            return false;
+            return false
         }
         val addressInput: String = binding.truckLocation.text.toString()
         if (addressInput.isEmpty()) {
             showToast("Enter an address")
-            return false;
+            return false
         }
 
         val address = findAddress(addressInput)
@@ -80,7 +102,12 @@ class OwnerSignupActivity : AppCompatActivity(){
             return false
         }
 
-        return true;
+        if (database.ownerDao().getByEmail(emailInput) != null) {
+            showToast("Email already exists")
+            return false
+        }
+
+        return true
     }
 
     fun findAddress(input: String): Address? {
@@ -102,20 +129,18 @@ class OwnerSignupActivity : AppCompatActivity(){
             return
         }
 
-        val newCustomer = Customer(
-            0,
+        val newOwner = Owner(
             binding.userInputFoodTruckName.text.toString(),
             binding.userInputEmail.text.toString(),
             binding.userInputPassword.text.toString(),
         )
 
         val addressInput = binding.truckLocation.text.toString()
-        val address = findAddress(addressInput)
+        val address = findAddress(addressInput)!!
         val newFoodTruck = FoodTruck(
-            0,
             binding.userInputFoodTruckName.text.toString(),
-            address!!.latitude,
-            address!!.longitude,
+            address.latitude,
+            address.longitude,
             "TBD",
             addressInput,
             5.0,
@@ -123,13 +148,11 @@ class OwnerSignupActivity : AppCompatActivity(){
             null,
         )
 
-        val database = AppDatabase.getInstance(this)
-        if (database != null) {
-            database.customerDao().insert(newCustomer)
-            database.foodTruckDao().insert(newFoodTruck)
+        database.ownerDao().insert(newOwner)
+        CurrentLogin.loginOwner(newOwner)
+        database.foodTruckDao().insert(newFoodTruck)
 
-            openLocationActivity()
-        }
+        openLocationActivity()
     }
 
     fun sendData(view: View) {
@@ -138,6 +161,7 @@ class OwnerSignupActivity : AppCompatActivity(){
 
     fun openLocationActivity() {
         val intent = Intent(this, LocationActivity::class.java)
+        CurrentLogin.isOwner = true
         startActivity(intent)
     }
 }

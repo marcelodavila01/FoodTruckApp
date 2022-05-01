@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "food_trucks")
 
 data class FoodTruck(
-    @PrimaryKey(autoGenerate = true) val id: Int?,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "latitude") val latitude: Double?,
     @ColumnInfo(name = "longitude") val longitude: Double?,
@@ -16,4 +15,6 @@ data class FoodTruck(
     @ColumnInfo(name = "rating") val rating: Double?,
     @ColumnInfo(name = "owner_added") val ownerAdded: Boolean?,
     @ColumnInfo(name = "image_name") val imageName: String?,
-)
+) {
+    @PrimaryKey(autoGenerate = true) var id: Int? = null
+}

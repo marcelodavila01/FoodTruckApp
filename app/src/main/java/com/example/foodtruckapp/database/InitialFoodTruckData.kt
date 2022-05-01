@@ -4,7 +4,6 @@ class InitialFoodTruckData {
     companion object {
         val data = listOf<FoodTruck>(
             FoodTruck(
-                1,
                 "Pinch",
                 30.283068838451634,
                 -97.74089692091488,
@@ -15,7 +14,6 @@ class InitialFoodTruckData {
                 "pinch"
             ),
             FoodTruck(
-                2,
                 "Pepe's Tacos",
                 30.2739933630959,
                 -97.7508396343992,
@@ -26,7 +24,6 @@ class InitialFoodTruckData {
                 "pepe_s_tacos"
             ),
             FoodTruck(
-                3,
                 "Chef Hong",
                 30.288789703098274,
                 -97.74574635372068,
@@ -37,7 +34,6 @@ class InitialFoodTruckData {
                 "chef_hong"
             ),
             FoodTruck(
-                4,
                 "El Taco Ranchero",
                 37.42263473382312,
                 -122.09414468856993,
@@ -48,7 +44,6 @@ class InitialFoodTruckData {
                 "el_taco_ranchero"
             ),
             FoodTruck(
-                5,
                 "Paper Platez",
                 37.414965828988784,
                 -122.09414468856993,
@@ -59,7 +54,6 @@ class InitialFoodTruckData {
                 "paper_platez"
             ),
             FoodTruck(
-                6,
                 "The Cookout Foodtruck",
                 37.41639741750566,
                 -122.09950910653023,

@@ -10,16 +10,18 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(
-    version = 5,
+    version = 6,
     entities = [
         FoodTruck::class,
         Customer::class,
+        Owner::class,
     ],
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodTruckDao(): FoodTruckDao
     abstract fun customerDao(): CustomerDao
+    abstract fun ownerDao(): OwnerDao
 
     fun populateFoodTrucks(foodTruckDao: FoodTruckDao) {
         foodTruckDao.deleteAllInitial()

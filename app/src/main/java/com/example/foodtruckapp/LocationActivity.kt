@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foodtruckapp.database.AppDatabase
 import com.example.foodtruckapp.database.CurrentLogin
@@ -14,6 +15,7 @@ class LocationActivity : AppCompatActivity() {
 
     private lateinit var binding: LocationActivity
     private lateinit var database: AppDatabase
+    private var isOwner: Boolean = CurrentLogin.isOwner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +25,23 @@ class LocationActivity : AppCompatActivity() {
 
         database = AppDatabase.getInstance(this)!!
 
-        val currentCustomer = CurrentLogin.currentCustomer
-        findViewById<TextView>(R.id.displayName_text).text = currentCustomer?.name
+        if (CurrentLogin.isOwner) {
+            val currentOwner = CurrentLogin.getCurrentOwner()
+            if (currentOwner == null) {
+                showToast("Please log in")
+                openHome()
+            } else {
+                findViewById<TextView>(R.id.displayName_text).text = currentOwner.name
+            }
+        } else {
+            val currentCustomer = CurrentLogin.getCurrentCustomer()
+            if (currentCustomer == null) {
+                showToast("Please log in")
+                openHome()
+            } else {
+                findViewById<TextView>(R.id.displayName_text).text = currentCustomer.name
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -41,15 +58,18 @@ class LocationActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             //user click back
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            openHome()
             true
         }
 
         R.id.action_log_out -> {
-            CurrentLogin.logoutCustomer()
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+            if (isOwner) {
+                CurrentLogin.logoutOwner()
+            } else {
+                CurrentLogin.logoutCustomer()
+            }
+
+            openHome()
             true
         }
 
@@ -69,5 +89,15 @@ class LocationActivity : AppCompatActivity() {
     {
         val intent = Intent(this, ListActivity::class.java)
         startActivity(intent)
+    }
+
+    fun openHome() {
+        val intent = Intent(this, Home::class.java)
+        startActivity(intent)
+    }
+
+    fun showToast(message: String) {
+        val myToast = Toast.makeText(this, message, Toast.LENGTH_LONG)
+        myToast.show()
     }
 }
