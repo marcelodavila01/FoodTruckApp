@@ -83,7 +83,7 @@
             android:id="@+id/selectLocation_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_semibold"
             android:text="SELECT VIEW"
             android:textColor="#99FFFFFF"
@@ -97,7 +97,6 @@
             android:id="@+id/Map_button"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:background="@drawable/custom_button"
             android:fontFamily="@font/montserrat_semibold"
             android:onClick="openMap"
@@ -105,17 +104,16 @@
             android:textAllCaps="false"
             android:textColor="#FF460A"
             android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@id/List_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectLocation_text"
-            app:layout_constraintBottom_toTopOf="@id/List_button"/>
+            app:layout_constraintTop_toBottomOf="@+id/selectLocation_text" />
 
         <Button
             android:id="@+id/List_button"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:background="@drawable/custom_button"
             android:fontFamily="@font/montserrat_semibold"
             android:onClick="openList"
@@ -123,17 +121,16 @@
             android:textAllCaps="false"
             android:textColor="#FF460A"
             android:textSize="18dp"
+            app:layout_constraintBottom_toTopOf="@id/edit_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Map_button"
-            app:layout_constraintBottom_toTopOf="@id/edit_button"/>
+            app:layout_constraintTop_toBottomOf="@+id/Map_button" />
 
         <Button
             android:id="@+id/edit_button"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:background="@drawable/custom_button"
             android:fontFamily="@font/montserrat_semibold"
             android:onClick="openEdit"
@@ -141,11 +138,11 @@
             android:textAllCaps="false"
             android:textColor="#FF460A"
             android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/List_button"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/List_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -103,10 +103,12 @@
                 android:background="@drawable/custom_button_orange"
                 android:onClick="sendData"
                 android:text="Log in"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/logInInput_password" />
+                app:layout_constraintTop_toBottomOf="@+id/logInInput_password"
+                app:layout_constraintVertical_bias="0.042" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
