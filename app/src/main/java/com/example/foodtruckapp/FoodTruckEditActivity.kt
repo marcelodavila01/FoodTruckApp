@@ -48,7 +48,7 @@ class FoodTruckEditActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_log_in -> {
+        android.R.id.home -> {
             //user click back
             val intent = Intent(this, LocationActivity::class.java)
             startActivity(intent)

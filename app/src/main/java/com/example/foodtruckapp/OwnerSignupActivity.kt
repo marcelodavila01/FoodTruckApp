@@ -9,8 +9,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.example.foodtruckapp.database.*
 import com.example.foodtruckapp.databinding.ActivityOwnerSignupBinding
+import java.lang.Exception
 import java.util.*
 
 
@@ -24,6 +26,10 @@ class OwnerSignupActivity : AppCompatActivity(){
         binding = ActivityOwnerSignupBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        binding.signUpButton.setOnClickListener {
+            createOwner()
+        }
 
         database = AppDatabase.getInstance(this)!!
 
@@ -110,9 +116,16 @@ class OwnerSignupActivity : AppCompatActivity(){
     }
 
     fun findAddress(input: String): Address? {
-        val geocoder = Geocoder(this, Locale.getDefault())
-        val addresses = geocoder.getFromLocationName(input, 1)
-        if (addresses.size == 0 || !addresses[0].hasLatitude() || !addresses[0].hasLatitude()) {
+        var addresses: List<Address>
+        try {
+            val geocoder = Geocoder(this, Locale.getDefault())
+            addresses = geocoder.getFromLocationName(input, 1)
+        } catch (e: Exception) {
+            showToast("Unable to find address")
+            return null
+        }
+
+        if (addresses.isEmpty() || !addresses[0].hasLatitude() || !addresses[0].hasLatitude()) {
             showToast("Address not found")
         }
 
@@ -152,10 +165,6 @@ class OwnerSignupActivity : AppCompatActivity(){
         CurrentLogin.loginOwner(newOwner)
 
         openLocationActivity()
-    }
-
-    fun sendData(view: View) {
-        createOwner()
     }
 
     fun openLocationActivity() {

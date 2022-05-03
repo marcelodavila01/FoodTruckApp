@@ -128,29 +128,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
 
         map.isMyLocationEnabled = true
+        val currentLatLng = LatLng(30.267960651515022, -97.74242296955676)
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
 
-        fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-            if (location != null) {
-                lastLocation = location
-                val currentLatLng = LatLng(location.latitude, location.longitude)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
-            }
-        }
 
-        val locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult?) {
-                locationResult ?: return
-                locationResult.lastLocation
-
-                lastLocation = locationResult.lastLocation
-                val currentLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
-            }
-        }
-        fusedLocationClient.requestLocationUpdates(
-            LocationRequest.create(),
-            locationCallback,
-            Looper.getMainLooper())
+//        fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+//            if (location != null) {
+//                lastLocation = location
+//                val currentLatLng = LatLng(location.latitude, location.longitude)
+//                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
+//            }
+//        }
+//
+//        val locationCallback = object : LocationCallback() {
+//            override fun onLocationResult(locationResult: LocationResult?) {
+//                locationResult ?: return
+//                locationResult.lastLocation
+//
+//                lastLocation = locationResult.lastLocation
+//                val currentLatLng = LatLng(lastLocation.latitude, lastLocation.longitude)
+//                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 13f))
+//            }
+//        }
+//        fusedLocationClient.requestLocationUpdates(
+//            LocationRequest.create(),
+//            locationCallback,
+//            Looper.getMainLooper())
     }
 
     private fun getLocationsFromDatabase(){
